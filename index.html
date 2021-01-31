@@ -1,0 +1,52 @@
+<html>
+  <head>
+     <script src="https://unpkg.com/@mongodb-js/charts-embed-dom@beta"></script>
+  </head>
+  <style>
+    #chart {
+      width: 500px;
+      height: 500px;
+      margin: 0 auto;
+      border: 1px solid #ccc;
+    }
+  </style>
+  <body>
+    <div id="chart"></div>
+
+    <button onclick="refresh()">Refresh</button>
+    <button onclick="aapl_filter()">AAPL</button>
+    <button onclick="ibm_filter()">IBM</button>
+    <button onclick="ccl_filter()">CCL</button>
+    <button onclick="tsla_filter()">TSLA</button>
+
+    <script>
+      const sdk = new ChartsEmbedSDK({
+        baseUrl: 'https://charts.mongodb.com/charts-stock-dashboard-nfuzf',
+        showAttribution: false
+      });
+
+      const chart = sdk.createChart({ chartId: 'b8bf03f0-6a06-4f54-8595-a2a4e5c6e2b9' });
+      chart.render(document.getElementById('chart'));
+
+      function refresh(){
+          chart.refresh();
+      }
+
+      function aapl_filter(){
+          chart.setFilter({"ticker": "AAPL"});
+      }
+
+      function ibm_filter(){
+          chart.setFilter({"ticker": "IBM"});
+      }
+
+      function ccl_filter(){
+          chart.setFilter({"ticker": "CCL"});
+      }
+
+      function tsla_filter(){
+          chart.setFilter({"ticker": "TSLA"});
+      }
+    </script>
+  </body>
+</html>
